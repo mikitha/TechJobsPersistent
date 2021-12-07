@@ -9,6 +9,7 @@ namespace TechJobsPersistent.Models
 
         public Employer()
         {
+            
         }
 
         public Employer(string name, string location)
