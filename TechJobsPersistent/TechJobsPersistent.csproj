@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Employer\" />
-    <Folder Include="Data\" />
     <Folder Include="Views\List\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\Skill\" />

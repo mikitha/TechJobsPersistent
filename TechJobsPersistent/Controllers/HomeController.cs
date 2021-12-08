@@ -24,7 +24,7 @@ namespace TechJobsPersistent.Controllers
 
         public IActionResult Index()
         {
-            List<Job> jobs = context.Jobs.Include(j => j.Employer).ToList();
+            List<Job> jobs = context.Jobs.Include(e => e.Employer).ToList();
 
             return View(jobs);
         }

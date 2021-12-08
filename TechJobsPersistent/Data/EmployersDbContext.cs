@@ -4,11 +4,11 @@ using TechJobsPersistent.Models;
 
 namespace TechJobsPersistent.Data
 {
-    public class EmployerDbContext : DbContext
+    public class EmployersDbContext : DbContext
     {
         public DbSet<Employer> Employer { get; set; }
 
-        public EmployerDbContext(DbContextOptions<EmployerDbContext> options)
+        public EmployersDbContext(DbContextOptions<EmployersDbContext> options)
               : base(options)
         {
         }

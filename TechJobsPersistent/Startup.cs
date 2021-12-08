@@ -30,7 +30,7 @@ namespace TechJobsPersistent
             services.AddControllersWithViews();
             services.AddDbContext<JobDbContext>(options =>
              options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<EmployerDbContext>(options =>
+            services.AddDbContext<EmployersDbContext>(options =>
              options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
         }
 
