@@ -14,9 +14,9 @@ namespace TechJobsPersistent.Controllers
 {
     public class EmployerController : Controller
     {
-        private EmployersDbContext context;
+        private JobDbContext context;
 
-        public EmployerController(EmployersDbContext dbContext)
+        public EmployerController(JobDbContext dbContext)
         {
             context = dbContext;
         }
@@ -24,31 +24,32 @@ namespace TechJobsPersistent.Controllers
         public IActionResult Index()
         {
             //Send all Employer objects to the view
-            List<Employer> employers = context.Employer.ToList();
+            List<Employer> employers = context.Employers.ToList();
             return View(employers);
         }
 
         public IActionResult Add()
         {
-            AddEmployerVIewModel addEmployerViewModel = new AddEmployerVIewModel();
+            AddEmployerViewModel addEmployerViewModel = new AddEmployerViewModel();
             return View(addEmployerViewModel);
         }
 
-        public IActionResult ProcessAddEmployerForm(Employer employer)
+        public IActionResult ProcessAddEmployerForm(AddEmployerViewModel addEmployerViewModel)
         {
             if (ModelState.IsValid)
             {
-                context.Employer.Add(employer);
+                Employer employer = new Employer { Name = addEmployerViewModel.Name, Location = addEmployerViewModel.Location };
+                context.Employers.Add(employer);
                 context.SaveChanges();
                 return Redirect("/employer/");
             }
 
-            return View("Add", employer);
+            return View("Add");
         }
 
         public IActionResult About(int id)
         {
-            List<Employer> employers = context.Employer
+            List<Employer> employers = context.Employers
                  .Where(e => e.Id == id)
                  .Include(e => e.Name)
                  .Include(e => e.Location)

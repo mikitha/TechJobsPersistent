@@ -8,8 +8,8 @@ using TechJobsPersistent.Data;
 namespace TechJobsPersistent.Migrations
 {
     [DbContext(typeof(JobDbContext))]
-    [Migration("20211206133421_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20211210013513_InitalMigration")]
+    partial class InitalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,7 +89,7 @@ namespace TechJobsPersistent.Migrations
             modelBuilder.Entity("TechJobsPersistent.Models.Job", b =>
                 {
                     b.HasOne("TechJobsPersistent.Models.Employer", "Employer")
-                        .WithMany()
+                        .WithMany("Jobs")
                         .HasForeignKey("EmployerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

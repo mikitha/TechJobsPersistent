@@ -6,12 +6,28 @@ using TechJobsPersistent.Models;
 
 namespace TechJobsPersistent.ViewModels
 {
-    public class AddEmployerVIewModel
+    public class AddEmployerViewModel
     {
         [Required(ErrorMessage = "Name is required")]
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Location is required")]
-        public int Location { get; set; }
+        public string Location { get; set; }
+
+        public Employer Employer { get; set; }
+
+        public List<SelectListItem> Employers { get; set; }
+
+        
+
+        
+
+
+        public AddEmployerViewModel()
+        {
+
+        }
     }
+
+  
 }
