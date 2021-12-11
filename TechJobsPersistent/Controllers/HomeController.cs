@@ -32,12 +32,36 @@ namespace TechJobsPersistent.Controllers
         }
 
         [HttpGet("/Add")]
-        public IActionResult AddJob()
+        public IActionResult AddJob(AddJobViewModel addJobViewModel)
         {
             List<Employer> possibleEmployers = jobContext.Employers.ToList();
             List<Skill> possibleSkills = jobContext.Skills.ToList();
-            AddJobViewModel addJobViewModel = new AddJobViewModel(possibleEmployers, possibleSkills);
+            //AddJobViewModel addJobViewModel = new AddJobViewModel(possibleEmployers, possibleSkills);
             
+               List<SelectListItem> EmployerList = new List<SelectListItem>();
+                List<SelectListItem> SkillList = new List<SelectListItem>();
+
+                foreach (var employer in possibleEmployers)
+                {
+                    EmployerList.Add(new SelectListItem
+                    {
+                        Value = employer.Id.ToString(),
+                        Text = employer.Name
+                    });
+                }
+                foreach (var skill in possibleSkills)
+                {
+                    SkillList.Add(new SelectListItem
+                    {
+                        Text = skill.Name,
+                        Value = skill.Id.ToString()
+                    });
+                }
+
+
+            
+            addJobViewModel.Employers = EmployerList;
+            addJobViewModel.Skills = SkillList;
             return View(addJobViewModel);
         }
 
@@ -68,7 +92,7 @@ namespace TechJobsPersistent.Controllers
                 return Redirect("Index");
             }
 
-            return View("Add", addJobViewModel);
+            return RedirectToAction("AddJob", addJobViewModel);
             
         }
 
